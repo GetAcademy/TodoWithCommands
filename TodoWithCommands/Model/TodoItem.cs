@@ -18,5 +18,10 @@
                    + (Done?.ToShortDateString() ?? "").PadRight(11)
                    + Text;
         }
+
+        public void MarkAsDone()
+        {
+            Done = DateTime.Now;
+        }
     }
 }

@@ -1,6 +1,10 @@
-﻿using TodoWithCommands.Model;
+﻿using TodoWithCommands.Commands;
+using TodoWithCommands.Model;
 
 var todo = new TodoManager();
+var cmd1 = new AddTodoItemCommand(todo);
+var cmd2 = new DeleteTodoItemCommand(todo);
+var cmd3 = new MarkAsDoneCommand(todo);
 
 while (true)
 {
@@ -10,26 +14,11 @@ while (true)
     Console.WriteLine("Kommandoer");
     Console.WriteLine("1 - legg til");
     Console.WriteLine("2 - slett");
+    Console.WriteLine("3 - marker som utført");
 
     var cmd = Console.ReadLine();
-    if (cmd == "1")
-    {
-        Console.WriteLine("Legg til");
-        Console.Write("Hvor mange dager til fristen? ");
-        var deadlineDaysStr = Console.ReadLine();
-        var deadlineDays = Convert.ToInt32(deadlineDaysStr);
-        Console.Write("Hva skal gjøres? ");
-        var text = Console.ReadLine();
-        todo.Add(new TodoItem(text, DateTime.Now.AddDays(deadlineDays)));
-
-    }
-    else if (cmd == "2")
-    {
-        Console.Write("Hvilket nr vil du slette? ");
-        var noStr = Console.ReadLine();
-        var no = Convert.ToInt32(noStr);
-        var index = no - 1;
-        todo.Delete(index);
-    }
+    if (cmd == "1") cmd1.Run();
+    else if (cmd == "2") cmd2.Run();
+    else if (cmd == "3") cmd3.Run();
 }
 
