@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TodoWithCommands.Model;
+﻿using TodoWithCommands.Model;
 
-namespace TodoWithCommands.Commands
+namespace TodoWithCommands.CommandsAndInterface
 {
-    internal class DeleteTodoItemCommand
+    internal class DeleteTodoItemCommand : ICommand
     {
         private readonly TodoManager _todo;
-
+        public int No { get; } = 2;
+        public string Description => $"{No} - slett";
         public DeleteTodoItemCommand(TodoManager todo)
         {
             _todo = todo;

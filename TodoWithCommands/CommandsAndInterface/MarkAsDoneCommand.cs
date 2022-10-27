@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TodoWithCommands.Model;
+﻿using TodoWithCommands.Model;
 
-namespace TodoWithCommands.Commands
+namespace TodoWithCommands.CommandsAndInterface
 {
-    internal class MarkAsDoneCommand
+    internal class MarkAsDoneCommand : ICommand
     {
         private readonly TodoManager _todo;
+        public int No { get; } = 3;
+        public string Description => $"{No} - marker som gjort";
 
         public MarkAsDoneCommand(TodoManager todo)
         {
@@ -24,5 +21,6 @@ namespace TodoWithCommands.Commands
             var index = no - 1;
             _todo.MarkAsDone(index);
         }
+
     }
 }

@@ -1,10 +1,12 @@
 ﻿using TodoWithCommands.Model;
 
-namespace TodoWithCommands.Commands
+namespace TodoWithCommands.CommandsAndInterface
 {
-    internal class AddTodoItemCommand
+    internal class AddTodoItemCommand : ICommand
     {
         private readonly TodoManager _todo;
+        public int No { get; } = 1;
+        public string Description => $"{No} - legg til";
 
         public AddTodoItemCommand(TodoManager todo)
         {
