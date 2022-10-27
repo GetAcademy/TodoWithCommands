@@ -4,13 +4,13 @@ namespace TodoWithCommands.CommandsAndInterface
 {
     internal class MarkAsDoneCommand : ICommand
     {
-        private readonly TodoList _todo;
-        public int No { get; } = 3;
+        private readonly TodoList _todoList;
+        public string No { get; } = "3";
         public string Description => $"{No} - marker som gjort";
 
-        public MarkAsDoneCommand(TodoList todo)
+        public MarkAsDoneCommand(TodoList todoList)
         {
-            _todo = todo;
+            _todoList = todoList;
         }
 
         public void Run()
@@ -19,7 +19,7 @@ namespace TodoWithCommands.CommandsAndInterface
             var noStr = Console.ReadLine();
             var no = Convert.ToInt32(noStr);
             var index = no - 1;
-            _todo.MarkAsDone(index);
+            _todoList.MarkAsDone(index);
         }
 
     }

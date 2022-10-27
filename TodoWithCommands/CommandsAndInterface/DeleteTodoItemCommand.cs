@@ -4,12 +4,12 @@ namespace TodoWithCommands.CommandsAndInterface
 {
     internal class DeleteTodoItemCommand : ICommand
     {
-        private readonly TodoList _todo;
-        public int No { get; } = 2;
+        private readonly TodoList _todoList;
+        public string No { get; } = "2";
         public string Description => $"{No} - slett";
-        public DeleteTodoItemCommand(TodoList todo)
+        public DeleteTodoItemCommand(TodoList todoList)
         {
-            _todo = todo;
+            _todoList = todoList;
         }
 
         public void Run()
@@ -18,7 +18,7 @@ namespace TodoWithCommands.CommandsAndInterface
             var noStr = Console.ReadLine();
             var no = Convert.ToInt32(noStr);
             var index = no - 1;
-            _todo.Delete(index);
+            _todoList.Delete(index);
         }
     }
 }

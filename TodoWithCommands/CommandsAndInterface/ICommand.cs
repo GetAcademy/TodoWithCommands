@@ -3,7 +3,7 @@
     internal interface ICommand
     {
         void Run();
-        int No { get; }
+        string No { get; }
         string Description { get; }
     }
 }

@@ -7,19 +7,19 @@ class Program
 {
     public static void Main(string[] args)
     {
-        WithoutCommands();
-        //WithCommandsAndInterface();
+        //WithoutCommands();
+        WithCommandsAndInterface();
     }
 
     private static void WithoutCommands()
     {
-        var todo = new TodoList();
+        var todoList = new TodoList();
 
         while (true)
         {
             Console.Clear();
             Console.WriteLine("Todo:");
-            Console.WriteLine(todo.ListAsText());
+            Console.WriteLine(todoList.ListAsText());
             Console.WriteLine("Kommandoer");
             Console.WriteLine("1 - legg til");
             Console.WriteLine("2 - slett");
@@ -35,7 +35,7 @@ class Program
                 Console.Write("Hva skal gjøres? ");
                 var text = Console.ReadLine();
                 var todoItem = new TodoItem(text, DateTime.Now.AddDays(deadlineDays));
-                todo.Add(todoItem);
+                todoList.Add(todoItem);
             }
             else if (cmd == "2")
             {
@@ -43,7 +43,7 @@ class Program
                 var noStr = Console.ReadLine();
                 var no = Convert.ToInt32(noStr);
                 var index = no - 1;
-                todo.Delete(index);
+                todoList.Delete(index);
             }
             else if (cmd == "3")
             {
@@ -51,7 +51,7 @@ class Program
                 var noStr = Console.ReadLine();
                 var no = Convert.ToInt32(noStr);
                 var index = no - 1;
-                todo.MarkAsDone(index);
+                todoList.MarkAsDone(index);
             }
         }
     }
@@ -59,7 +59,7 @@ class Program
     private static void WithCommandsAndInterface()
     {
         var todoList = new TodoList();
-        var commands = new ICommand?[]
+        var commands = new ICommand[]
         {
             new AddTodoItemCommand(todoList),
             new DeleteTodoItemCommand(todoList),
@@ -77,19 +77,10 @@ class Program
                 Console.WriteLine(command.Description);
             }
 
-            var cmdNoStr = Console.ReadLine();
-            var selectedCommand = CommandManager.Find(cmdNoStr, commands);
-            if (selectedCommand != null)
-            {
-                selectedCommand.Run();
-            }
-            else
-            {
-                Console.WriteLine("Ukjent kommando: " + cmdNoStr);
-            }
+            var cmdNo = Console.ReadLine();
+            var selectedCommand = commands.SingleOrDefault(cmd => cmd.No == cmdNo);
+            selectedCommand?.Run();
         }
-
-
     }
 }
 

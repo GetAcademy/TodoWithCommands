@@ -29,7 +29,7 @@ namespace TodoWithCommands.Model
         public string ListAsText()
         {
             var txt = new StringBuilder();
-            txt.AppendLine("   Frist      Gjort       Tekst");
+            txt.AppendLine("   Frist      Gjort      Tekst");
             for (var index = 0; index < _todoItems.Count; index++)
             {
                 var todoItem = _todoItems[index];

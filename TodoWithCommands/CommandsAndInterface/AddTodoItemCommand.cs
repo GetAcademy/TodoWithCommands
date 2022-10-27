@@ -4,13 +4,13 @@ namespace TodoWithCommands.CommandsAndInterface
 {
     internal class AddTodoItemCommand : ICommand
     {
-        private readonly TodoList _todo;
-        public int No { get; } = 1;
+        private readonly TodoList _todoList;
+        public string No { get; } = "1";
         public string Description => $"{No} - legg til";
 
-        public AddTodoItemCommand(TodoList todo)
+        public AddTodoItemCommand(TodoList todoList)
         {
-            _todo = todo;
+            _todoList = todoList;
         }
 
         public void Run()
@@ -22,7 +22,7 @@ namespace TodoWithCommands.CommandsAndInterface
             Console.Write("Hva skal gjøres? ");
             var text = Console.ReadLine();
             var todoItem = new TodoItem(text, DateTime.Now.AddDays(deadlineDays));
-            _todo.Add(todoItem);
+            _todoList.Add(todoItem);
         }
     }
 }
