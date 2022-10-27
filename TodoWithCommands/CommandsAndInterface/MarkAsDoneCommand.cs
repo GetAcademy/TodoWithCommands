@@ -4,11 +4,11 @@ namespace TodoWithCommands.CommandsAndInterface
 {
     internal class MarkAsDoneCommand : ICommand
     {
-        private readonly TodoManager _todo;
+        private readonly TodoList _todo;
         public int No { get; } = 3;
         public string Description => $"{No} - marker som gjort";
 
-        public MarkAsDoneCommand(TodoManager todo)
+        public MarkAsDoneCommand(TodoList todo)
         {
             _todo = todo;
         }

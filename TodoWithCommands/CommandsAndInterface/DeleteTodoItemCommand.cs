@@ -4,10 +4,10 @@ namespace TodoWithCommands.CommandsAndInterface
 {
     internal class DeleteTodoItemCommand : ICommand
     {
-        private readonly TodoManager _todo;
+        private readonly TodoList _todo;
         public int No { get; } = 2;
         public string Description => $"{No} - slett";
-        public DeleteTodoItemCommand(TodoManager todo)
+        public DeleteTodoItemCommand(TodoList todo)
         {
             _todo = todo;
         }

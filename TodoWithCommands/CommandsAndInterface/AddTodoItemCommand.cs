@@ -4,11 +4,11 @@ namespace TodoWithCommands.CommandsAndInterface
 {
     internal class AddTodoItemCommand : ICommand
     {
-        private readonly TodoManager _todo;
+        private readonly TodoList _todo;
         public int No { get; } = 1;
         public string Description => $"{No} - legg til";
 
-        public AddTodoItemCommand(TodoManager todo)
+        public AddTodoItemCommand(TodoList todo)
         {
             _todo = todo;
         }

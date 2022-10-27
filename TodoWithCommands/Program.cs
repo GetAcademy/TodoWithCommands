@@ -1,5 +1,4 @@
-﻿using System.Runtime.Intrinsics;
-using TodoWithCommands.CommandsAndInterface;
+﻿using TodoWithCommands.CommandsAndInterface;
 using TodoWithCommands.Model;
 
 namespace TodoWithCommands;
@@ -9,7 +8,7 @@ class Program
     public static void Main(string[] args)
     {
         WithoutCommands();
-        WithCommandsAndInterface();
+        //WithCommandsAndInterface();
     }
 
     private static void WithoutCommands()
@@ -59,19 +58,19 @@ class Program
 
     private static void WithCommandsAndInterface()
     {
-        var todo = new TodoList();
+        var todoList = new TodoList();
         var commands = new ICommand?[]
         {
-            new AddTodoItemCommand(todo),
-            new DeleteTodoItemCommand(todo),
-            new MarkAsDoneCommand(todo)
+            new AddTodoItemCommand(todoList),
+            new DeleteTodoItemCommand(todoList),
+            new MarkAsDoneCommand(todoList)
         };
 
         while (true)
         {
             Console.Clear();
             Console.WriteLine("Todo:");
-            Console.WriteLine(todo.ListAsText());
+            Console.WriteLine(todoList.ListAsText());
             Console.WriteLine("Kommandoer");
             foreach (var command in commands)
             {

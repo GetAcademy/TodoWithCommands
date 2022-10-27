@@ -2,11 +2,11 @@
 
 namespace TodoWithCommands.Model
 {
-    internal class TodoManager
+    internal class TodoList
     {
         private readonly List<TodoItem> _todoItems;
 
-        public TodoManager()
+        public TodoList()
         {
             _todoItems = new List<TodoItem>();
         }
