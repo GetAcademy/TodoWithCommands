@@ -14,7 +14,7 @@ class Program
 
     private static void WithoutCommands()
     {
-        var todo = new TodoManager();
+        var todo = new TodoList();
 
         while (true)
         {
@@ -59,7 +59,7 @@ class Program
 
     private static void WithCommandsAndInterface()
     {
-        var todo = new TodoManager();
+        var todo = new TodoList();
         var commands = new ICommand?[]
         {
             new AddTodoItemCommand(todo),
