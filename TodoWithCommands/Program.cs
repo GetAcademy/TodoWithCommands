@@ -1,5 +1,9 @@
-﻿using TodoWithCommands.CommandsAndInterface;
+﻿using TodoWithCommands.CommandsAndInheritance;
+using TodoWithCommands.CommandsAndInterface;
 using TodoWithCommands.Model;
+using AddTodoItemCommand = TodoWithCommands.CommandsAndInterface.AddTodoItemCommand;
+using DeleteTodoItemCommand = TodoWithCommands.CommandsAndInterface.DeleteTodoItemCommand;
+using MarkAsDoneCommand = TodoWithCommands.CommandsAndInterface.MarkAsDoneCommand;
 
 namespace TodoWithCommands;
 
@@ -8,7 +12,35 @@ class Program
     public static void Main(string[] args)
     {
         //WithoutCommands();
-        WithCommandsAndInterface();
+        //WithCommandsAndInterface();
+        WithCommandsAndInheritance();
+    }
+
+    private static void WithCommandsAndInheritance()
+    {
+        var todoList = new TodoList();
+        var commands = new Command[]
+        {
+            new CommandsAndInheritance.AddTodoItemCommand(todoList),
+            new CommandsAndInheritance.DeleteTodoItemCommand(todoList),
+            new CommandsAndInheritance.MarkAsDoneCommand(todoList)
+        };
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Todo:");
+            Console.WriteLine(todoList.ListAsText());
+            Console.WriteLine("Kommandoer");
+            foreach (var command in commands)
+            {
+                Console.WriteLine(command.Description);
+            }
+
+            var cmdNo = Console.ReadLine();
+            var selectedCommand = commands.SingleOrDefault(cmd => cmd.No == cmdNo);
+            selectedCommand?.Run();
+        }
     }
 
     private static void WithoutCommands()
